@@ -1,6 +1,6 @@
 # Comandos .NET
 
-No VS Code instalar as seguintes extensões
+No VS Code, instalar as seguintes extensões
 > Name: C#
 > Id: ms-dotnettools.csharp
 > VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
@@ -23,24 +23,38 @@ dotnet new console
 
 Devido à extensão instalada, o VS Code sugere a inclusão de alguns assets para construção e debug (aceite!)
 
-![Adicionar extensão](Conteudo\img\extensoes_csharp.png)
+![Adicionar extensão](./img/extensoes_csharp.png)
 
 Caso a opção não apareça, aperte "Ctrl+Shift+P" e selecione a seguinte opção
 
-![Assets C#](Conteudo\img\assets_csharp.png)
+![Assets C#](./img/assets_csharp.png)
 
+
+Para rodar a aplicação
+```
+dotnet run
 ```
 
-```
 
-```
+## Nullables em projeto
 
-```
+Por vezes, o 'Console.ReadLine()' pode apresentar um alerta indicando que o valor atribuído poderá ser nulo.
+Para desabilitar este aviso, basta ir às configurações de programa e desabilitar a linha correspondente.
 
-```
+![Nullable enabled](./img/nullable_csharp.png)
 
-```
 
-```
+## Top level statements
+## Top level statements
+
+```C#
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("e o programa principal vai aqui!");
+    }
+}
 
 ```
