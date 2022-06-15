@@ -497,7 +497,7 @@ class BankAccount{
         if(string.IsNullOrWhiteSpace(name)){
             throw new Exception ("Nome inválido"); //sempre que uma exceção é lançada, o código restante não é executado. Ou seja, vai parar a execução do construtor
         }
-        if (balance < 0>){
+        if (balance < 0){
             throw New Exception ("Saldo não pode ser negativo");
         }
         this.name = name;
@@ -512,10 +512,11 @@ class BankAccount{
 Precisamos definir o método como público para que ele seja acessível pelos objetos no programa principal.
 
 Na criação do método definimos
-* acesibilidade
-* retorno
-* identificador do método
-* parametros (não obrigatório)
+
+- acesibilidade
+- retorno
+- identificador do método
+- parametros (não obrigatório)
 
 ```c#
 class Program{
