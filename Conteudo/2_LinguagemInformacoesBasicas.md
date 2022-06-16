@@ -548,6 +548,285 @@ class BankAccount{
 }
 ```
 
+## Criando um método que retorna um objeto
+
+```c#
+class Program{
+    static void Main(){
+        BankAccount account1 = new BankAccount("Ana", 100);
+        BankAccount account2 = new BankAccount("Bruno",250);
+        account1.Deposit(-100);
+        account2.Deposit(150);
+        Console.WriteLine(account2.GetBalance());
+
+    }
+}
+
+class BankAccount{
+    private string name;
+    private decimal balance;
+
+    public BankAccount (string name, decimal balance){
+    //código suprimido, consultar exemplos anteriores.
+    }
+
+    public void Deposit (decimal amount){
+    //código suprimido, consultar exemplos anteriores.
+    }
+
+    public decimal GetBalance (){
+        return balance;
+    }
+}
+```
+
+## Propriedades (properties)
+
+Propriedades são parecidas com Campos, mas com a vantagem de que a gente vai ter controle sobre a leitura e escrita delas.
+
+```c#
+class Program{
+    static void Main(){
+        BankAccount account1 = new BankAccount("Ana", 100);
+        BankAccount account2 = new BankAccount("Bruno",250);
+        account1.Deposit(-100);
+        account2.Deposit(150);
+        Console.WriteLine(account2.Balance());
+
+    }
+}
+
+class BankAccount{
+    private string name;
+    private decimal balance;
+
+    public decimal Balance {
+        get { return balance; }
+        private set {
+            if (value <= 0){
+                return;
+            {
+            balance = value;
+        }
+    }
+
+    public BankAccount (string name, decimal balance){
+    //código suprimido, consultar exemplos anteriores.
+    }
+
+    public void Deposit (decimal amount){
+    //código suprimido, consultar exemplos anteriores.
+    }
+}
+```
+
 ## Operador nameof
 
 Evita erros de compilação em caso de troca de nome de variável do tipo string.
+
+## Interfaces
+
+Além de classe, existe uma outra declaração de tipo de referência bem importante, que é a interface.
+Uma interface é basicamente uma declaração de um contrato público, ou seja, quem quer implementar esse contrato precisa implementar todos os membros declarados na interface.
+
+Uma interface é um tipo não concreto, ou seja a gente não pode criar instâncias dele. Normalmente quem implementa a interface é quem vai ser o tipo concreto (no caso do Exemplo, a classe BankAccount).
+
+- Por convenção, nomes de interfaces começam com a letra I maiuscula (Ex: ILogger).
+- Por padrão, todos os membros de interface são públicos.
+- Por padrão, métodos de interface não tem corpo.
+
+```c#
+class Program{
+    static void Main(){
+        ConsoleLogger logger = new ConsoleLogger();
+        BankAccount account1 = new BankAccount("Ana", 100), logger;
+
+    }
+}
+
+class ConsoleLogger : ILogger
+{
+    public void Log (string message){
+        Console.WriteLine(message);
+    }
+}
+
+interface ILogger
+{
+    void Log (string message);
+}
+
+class BankAccount{
+    private string name;
+    private decimal balance;
+
+    public decimal Balance {
+        get { return balance; }
+        private set {
+            if (value <= 0){
+                return;
+            {
+            balance = value;
+        }
+    }
+
+    public BankAccount (string name, decimal balance, ILogger logger){
+    //código suprimido, consultar exemplos anteriores.
+        this.logger = logger;
+    }
+
+    public void Deposit (decimal amount){
+        if(amount <= 0){
+            logger.Log($"Não é possível depositar {amount} na conta de {name} ");
+            return;
+        }
+        balance += amount;
+    }
+}
+```
+
+## Escrevendo e salvando em um arquivo
+
+```c#
+class Program{
+    static void Main(){
+        ILogger logger = new FileLogger("mylog.txt");
+        BankAccount account1 = new BankAccount("Ana", 100), logger;
+
+    }
+}
+
+///// CONCEITO APRESENTADO
+class FileLogger : ILogger
+{
+    private readonly string filePath;
+
+    public FileLogger (string filePath)
+    {
+        this.filePath = filePath;
+    }
+
+    public void Log (string message){
+        File.AppendAllText("log.txt", $"{message}{Enviroment.NewLine}");
+    }
+}
+/////
+
+interface ILogger
+{
+    void Log (string message);
+}
+
+class BankAccount{
+    private string name;
+    private decimal balance;
+
+    public decimal Balance {
+        get { return balance; }
+        private set {
+            if (value <= 0){
+                return;
+            {
+            balance = value;
+        }
+    }
+
+    public BankAccount (string name, decimal balance, ILogger logger){
+    //código suprimido, consultar exemplos anteriores.
+        this.logger = logger;
+    }
+
+    public void Deposit (decimal amount){
+        if(amount <= 0){
+            logger.Log($"Não é possível depositar {amount} na conta de {name} ");
+            return;
+        }
+        balance += amount;
+    }
+}
+```
+
+## Generics
+
+Um tipo genérico vai possuir atributos e comportamentos sem especificar nenhum tipo de dados em particular.
+
+## Criando um tipo genérico
+
+```c#
+class Program{
+    static void Main(){
+        DataStore <int> store = new DataStore<int>();
+        store.Value = 42;
+        Console.WriteLine(store.Value);
+
+
+        DataStore <string> storeStrings = new DataStore<string>();
+        storeStrings = "Texto";
+        Console.WriteLine(storeStrings.Value.Length);
+    }
+}
+
+class DataStore<T>
+{
+    public T Value { get; set; }
+}
+```
+
+## Listas
+
+Um dos tipos genéricos mais famoso do C# é a lista.
+
+```c#
+class Program{
+    static void Main(){
+        ILogger logger = new FileLogger("mylog.txt");
+        BankAccount account1 = new BankAccount("Ana", 100), logger;
+        BankAccount account2 = new BankAccount("Bruno", 250), logger;
+
+        List<BankAccount> accounts = new List<BankAccount>() ;
+
+        /* outra forma de inicializar listas
+
+        List <BankAccount> accounts = new List<BankAccount> ()
+        {
+            account1,
+            account2
+        }
+        */
+
+        accounts.Add(account1);
+        accounts.Add(account2);
+
+        foreach (BankAccount account in accounts) {
+            Console.WriteLine(account.Balance);
+        }
+
+        account.Remove(account1);
+
+        List <int> numbers = new List <int> {1,2,4,8,10};
+
+        foreach (int number in numbers) {
+            Console.WriteLine(number);
+        }
+
+    }
+}
+
+```
+
+## Declaração de variáveis com tipo implícito
+
+Qualquer variavel pode ser declarada com o tipo var. Dessa forma, passamos ao compilador a tarefa de definir o tipo de variável de acordo com o tipo de expressão da direita da atribuição.
+
+```c#
+class Program{
+    static void Main(){
+        var store = new DataStore<int>();
+        var account2 = new BankAccount("Bruno", 250), logger;
+        var nome = "Ana";
+    }
+}
+
+```
+
+OBSERVAÇÃO: a implementação aqui é diferente do JavaScript, pois a tipagem continua sendo forte. Ou seja, se a variavel account2 for do tipo BankAccount, assim ela permanecerá, não sendo possível atribuir implicitamente um tipo diferente à variável.
