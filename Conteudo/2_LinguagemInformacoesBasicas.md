@@ -830,3 +830,348 @@ class Program{
 ```
 
 OBSERVAÇÃO: a implementação aqui é diferente do JavaScript, pois a tipagem continua sendo forte. Ou seja, se a variavel account2 for do tipo BankAccount, assim ela permanecerá, não sendo possível atribuir implicitamente um tipo diferente à variável.
+
+## Delegates
+
+Um delegate ou delegado nada mais é do que um objeto que sabe executar métodos.
+
+É uma maneira da gente armazenar métodos em variáveis ou até passar métodos como argumento.
+Delegate é um tipo que a gente declara para definir a
+espécie de método que as instâncias de delegate podem executar.
+
+```c#
+class Program{
+    static void Main(){
+        Calculate calculate = new Calculate (Sum);
+        int result = calculate (10,20);
+        Console.WriteLine(result);
+    }
+
+    static int Sum (int a, int b)
+    {
+        return a + b;
+    }
+}
+
+delegate int Calculate (int x, int y);
+```
+
+Como delegates são tipos nós podemos criar métodos que tem parâmetros desse tipo.
+
+```c#
+class Program{
+    static void Main(){
+        Calculate calculate = new Calculate (Sum);
+        Run(Sum);
+        Run(Multiply);
+    }
+
+    static void Run (Calculate calc)
+    {
+        Console.WriteLine(calc(20,30));
+    }
+    static int Sum (int a, int b)
+    {
+        return a + b;
+    }
+    static int Multiply (int a, int b)
+    {
+        return a * b;
+    }
+}
+
+delegate int Calculate (int x, int y);
+```
+
+## Métodos anônimos
+
+```c#
+class Program{
+    static void Main(){
+        var multiply = delegate(multiply(10,5));
+        Console.WriteLine(multiply(10,5));
+    }
+}
+
+delegate int Calculate (int x, int y);
+```
+
+## Func e Action
+
+Tanto o Func quanto o Action podem receber até 16 parâmetros e a vantagem é que não precisamos ficar declarando nosso próprio delegate.
+
+```c#
+class Program{
+    static void Main(){
+        var multiply = delegate(multiply(10,5));
+        Run(multiply);
+
+        Action<string> test = delegate (string name) {Console.WriteLine($"Olá {nome}");};
+        test("John Wick");
+    }
+
+    static void Run (Func<int, int, int> calc)
+    {
+        Console.WriteLine(calc(20,30));
+    }
+    static int Sum (int a, int b)
+    {
+        return a + b;
+    }
+    static int Multiply (int a, int b)
+    {
+        return a * b;
+    }
+}
+
+delegate int Calculate (int x, int y);
+```
+
+A grande diferença entre Func e Action é que:
+
+- Func sempre vai retornar alguma coisa, que vai ser sempre o ultimo parametro de tipo. Ele pode até não receber nada, mas sempre vai retornar algo.
+
+```c#
+class Program{
+    static void Main(){
+        Func<decimal> test2 = delegate () {return 4.2m;};
+        //como o Func nao vai receber nada, os parametros poderiam ser omitidos
+        // Func<decimal> test2 = delegate {return 4.2m;};
+
+
+        // por padrão, o C# considera numeros fracionados sendo do tipo flutuante (float), não permitindo a conversão implícita para decimal.
+        // Como o nosso retorno foi definido como decimal, é preciso utilizar o sufixo 'm' ou 'M' no numero para indicar que se trata de um número do tipo decimal
+
+        Console.WriteLine(test2);
+
+        Func <string, bool> checkName = delegate (string name) { return name == "Ana"; };
+        Console.WriteLine(checkName("Mariana"));
+    }
+}
+
+delegate int Calculate (int x, int y);
+```
+
+## Expressões Lambda
+
+Uma coisa a fazer para simplificar esse código é, ao invés de utilizar delegates, usar expressões lambda.
+Para transformar um delegate em uma expressão lambda a gente só precisa remover a palavra-chave delegate e após os parentes a gente utiliza o operador lambda (`=>`).
+
+Quando o corpo da expressão Lambda só possui uma instrução, nós podemos até remover as chaves e o retorno.
+
+```c#
+class Program{
+    static void Main(){
+        var multiply = (int x, int y) => x * y;
+        Run(multiply);
+
+        var test = (string name) => {Console.WriteLine($"Olá {nome}");};
+        test("John Wick");
+
+        Func<decimal> test2 = () => 4.2m;
+        Console.WriteLine(test2());
+
+        Func<string, bool> checkName = (name) => name == "Ana";
+        Console.WriteLine(checkName("Mariana"));
+    }
+}
+```
+
+## Métodos de extensão
+
+Outra funcionalidade bem importante no C# é a possibilidade de estender qualquer tipo criando métodos de extensão. Isso é útil quando agente quer estender tipos de valor ou Tipo selados, que tipos que a gente não tem controle sobre eles.
+
+Métodos de extensão existem graças aos métodos estáticos que são executadas através do tipo diretamente e não através de uma Instância de objeto.
+
+```c#
+class Program{
+    static void Main(){
+        WriteLine("Testando", ConsoleColor.Yellow);
+    }
+
+    static void WriteLine (string text, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(text);
+        Console.ResetColor();
+    }
+}
+```
+
+```c#
+static class Program{
+    static void Main(){
+        "Testando".WriteLine(ConsoleColor.Yellow);
+    }
+
+    static void WriteLine (this string text, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(text);
+        Console.ResetColor();
+    }
+}
+```
+
+```c#
+class Program{
+    static void Main(){
+        "Testando".WriteLine(ConsoleColor.Yellow);
+    }
+}
+
+static class Extensions
+{
+    public static void WriteLine (this string text, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(text);
+        Console.ResetColor();
+    }
+}
+```
+
+## Declarando namespaces
+
+## Implicit usings
+
+## Importando um namespace com a diretiva using
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=10492s)
+
+## Serialização e desserialização JSON
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=10616s)
+
+Serialização é um processo que permite que objetos sejam transformados em formato que pode ser armazenado ou transferido com o propósito de Reconstruir objetos a partir desse formato.
+
+JSON é o formato mais popular hoje em dia e é um formato de fácil leitura tanto para computadores quanto para seres humanos.
+O .NET possui um tipo para serializar JSON, que é o namespace `System.Text.JSON.`
+
+```c#
+
+using System.Text.Json;
+using Bank;
+
+class Program{
+    static void Main(){
+        BankAccount account = new BankAccount("Fredi", 100);
+
+        // SERIALIZAÇÃO
+        string json = JsonSerializer.Serialize(account);
+        Console.WriteLine(json);
+
+        // DESSERIALIZAÇÃO
+        BankAccount account1 = JsonSerializer.Deserialize<BankAccount>(json);
+        Console.WriteLine(account1.Name);
+        Console.WriteLine(account1.Balance);
+    }
+}
+
+namespace Bank
+{
+    // código suprimido
+}
+```
+
+## Múltiplos construtores
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=10937s)
+
+## Attributes (anotações de código)
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11052s)
+
+## LINQ - Language Integrated Query
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11200s)
+
+LINQ, Language Integrated Query (ou consulta integrada a linguagem, em português) é basicamente um conjunto de tecnologias que permite que a gente realize consultas em coleções, documentos XML e até em banco de dados usando somente códigos C#.
+
+```c#
+
+class Program{
+    static void Main(){
+        int[] numbers = { 1, 4, 10, 42};
+
+        // QUERY SINTAX (Sintaxe de consulta)
+        var query = from number in numbers
+                    where number < 10
+                    select number;
+
+        // METHOD SYNTAX (Sintaxe de método com lambda)
+        var query2 = numbers.Where(number => number < 10);
+    }
+}
+
+```
+
+## Classe Enumerable
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11536s)
+
+## Atenção com execução adiada
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11641s)
+
+## Materializando uma consulta LINQ
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11795s)
+
+- ToList()
+- First()
+- FirstOrDefault()
+- OrderBy()
+- OrderByDescending()
+- GroupBy()
+- Select()
+
+## Tipos anônimos
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=11795s)
+
+## Enumerable.Empty e Enumerable.Range
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=12789s)
+
+## Usando Range pra retornar letras do alfabeto
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13065s)
+
+## Programação assíncrona
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13163s)
+
+## Diferença entre operação sincrona e assincrona
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13304s)
+
+## Executando código de forma assincrona
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13436s)
+
+## async e await
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13644s)
+
+## Retornando objeto em uma Task
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13812s)
+
+## Gerando o executável da aplicação
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=13947s)
+
+console
+
+```
+dotnet publish
+```
+
+## Executando em outro computador com o Runtime
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=14015s)
+
+## Próximos passos (Importante)
+
+[Explicação Fredi](https://www.youtube.com/watch?v=oTivhgjbhIg&t=14118s)

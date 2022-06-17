@@ -45,7 +45,6 @@ Para desabilitar este aviso, basta ir às configurações de programa e desabili
 
 
 ## Top level statements
-## Top level statements
 
 ```C#
 
@@ -57,4 +56,11 @@ class Program
     }
 }
 
+```
+
+## Gerando o executável da aplicação
+
+console
+```
+dotnet publish
 ```
