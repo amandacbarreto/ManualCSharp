@@ -145,37 +145,7 @@ if (idade>=18){
 }
 ```
 
-## Desvio condicional com if (se)
 
-Caso o if tenha uma única instrução, não é necessário o uso das chaves.
-
-```c#
-if (idade>=18) Console.WriteLine("Você é maior de idade");
-```
-
-Porém, se sua condicional vai executar um bloco de instruções, o uso de chaves é obrigatório.
-
-```c#
-int idade = 25;
-
-if (idade>=18){
-    Console.WriteLine("Instrução 1");
-    Console.WriteLine("Instrução 2");
-    Console.WriteLine("Instrução 3");
-}
-```
-
-## Else e else if
-
-Else e else if são formas de apresentar uma alternativa à expressao testada no if.
-
-O else if permite aninhar várias condições, enquanto o else trata todas as possibilidades restante.
-
-```c#
-if (idade>=18) Console.WriteLine("Você é maior de idade");
-else if (idade==12) Console.WriteLine("Você tem 12 anos");
-else Console.WriteLine("Você é menor de idade");
-```
 
 ## Laços (loops)
 
