@@ -1,0 +1,20 @@
+# C# - Interações Classe Console
+
+## Conversão do valor lido através do Console.ReadLine()
+
+### TryParse
+
+```c#
+Console.WriteLine("Insira o valor da compra em reais: ");
+Double.TryParse(Console.ReadLine(), out double valorDaCompraEmReais);
+```
+
+## Formatação de números decimais
+
+### ToString("N2")
+
+```c#
+double pi = 3.14159265359;
+Console.WriteLine(pi.ToString("N2")); // 3.14
+Console.WriteLine(pi.ToString("F3")); // 3,141
+```
