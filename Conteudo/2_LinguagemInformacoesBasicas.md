@@ -145,8 +145,6 @@ if (idade>=18){
 }
 ```
 
-
-
 ## Laços (loops)
 
 ### Laço for
@@ -389,6 +387,26 @@ catch // equivalente ao catch anterior "catch (Exception exception)"
 string name = "   ";
 if(string.IsNullOrWhiteSpace(name)){
     throw new Exception ("Nome inválido");
+}
+```
+
+> **Note**
+>
+> Quando tentamos fazer uma divisão por zero, é necessário lançar essa exceção antes de tentar fazer a conta, pois a atual versao do C# permite a divisao por 0, com o resultado tendendo ao infinito (representado pelo número 8).
+
+```c#
+double dividirValor(double valor)
+{
+    if (valor == 0)
+    {
+        throw new DivideByZeroException("CodError001 - Divisão por 0 não é possível.");
+    }
+    else
+    {
+        double resultadoDivisao = pegarResultadoDaUltimaOperacaoMatematica() / valor;
+        definirResultadoDaUltimaOperacaoMatematica(resultadoDivisao);
+        return resultadoDivisao;
+    }
 }
 ```
 
