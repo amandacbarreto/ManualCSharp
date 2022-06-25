@@ -4,17 +4,17 @@
 
 1. Com a sua aplicação aberta, vá até a guia 'Projeto' e selecione o item 'Propriedades' do seu projeto.
 
-![Tela do Visual Studio com Aba "Projetos" e "Propriedades de 'Nome do projeto selecionado' "  ](/img/wpf_icon_propriedades.png)
+![Tela do Visual Studio com Aba "Projetos" e "Propriedades de 'Nome do projeto selecionado' "  ](./img/wpf_icon_propriedades.png)
 
 2. Na opção "Aplicativo", vá até "Recursos do Win32", "Ícone" e clique em procurar.
 
-![Tela "propriedades do projeto" com a opção para escolher o ícone "  ](/img/wpf_icon_icone.png)
+![Tela "propriedades do projeto" com a opção para escolher o ícone "  ](./img/wpf_icon_icone.png)
 
 3. Escolha o ícone, que deve ser colocado na pasta da sua aplicação
 
-![Gerenciador de arquivos do Windows com o arquivo selecionado para ser o ícone](/img/wpf_icon_escolha-do-icone.png)
+![Gerenciador de arquivos do Windows com o arquivo selecionado para ser o ícone](./img/wpf_icon_escolha-do-icone.png)
 
-![Aplicação com o ícone alterado](/img/wpf_icon_aplicacao-com-icone-alterado.png)
+![Aplicação com o ícone alterado](./img/wpf_icon_aplicacao-com-icone-alterado.png)
 
 > **Note**
 > 
