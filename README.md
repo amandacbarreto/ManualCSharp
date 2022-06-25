@@ -1,5 +1,10 @@
 # ManualCSharp
 Juntando os conhecimentos adquiridos nessa jornada de aprender C#
 
-## [Comandos .NET](./Conteudo/1_ComandosDotNet.md)
-## [C# - Informações básicas da Linguagem](./Conteudo/2_LinguagemInformacoesBasicas.md)
+## [Comandos .NET](./Conteudo/ComandosDotNet.md)
+## [C# - Informações básicas da Linguagem](./Conteudo/LinguagemInformacoesBasicas.md)
+## [Interações Console](./Conteudo/InteracoesConsole.md)
+## [Estruturas Condicionais](./Conteudo/EstruturasCondicionais.md)
+## [String](./Conteudo/String.md)
+## [Vetores](./Conteudo/Vetores.md)
+## [WPF](./Conteudo/WPF.md)
