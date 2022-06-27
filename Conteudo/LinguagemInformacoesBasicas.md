@@ -38,22 +38,31 @@ int numero;
 numero = "Não é um numero"; //C# nao vai permitir essa atribuição
 ```
 
-## Tipos mais comuns de variáveis
+## Convenções para nomes
+
+- `Camel Case`: **lastName** (parâmetros de métodos, variáveis dentro de métodos)
+- `Pascal Case`: **LastName** (namespaces, classe, properties e métodos)
+- `Padrão`: **\_lastName** (atributos "internos" da classe)
 
 ```c#
-bool varBool = true;
-varBool = false;
+namespace Curso
+{
+    class ContaBancaria
+    {
+        public string Titular { get; set; }
+        private double _saldo;
 
-char varChar = 'a';
-varChar = '&';
-
-byte varByte;
-int varInt;
-long varLong;
-float varFloat;
-double varDouble;
-decimal varDecimal;
-string varString = "Essa é uma variável do tipo String";
+        public void Deposito(double quantia)
+        {
+            _saldo += quantia;
+        }
+        
+        public double GetSaldo()
+        {
+            return _saldo;
+        }
+    }
+}
 ```
 
 ## Statements (instrução)
