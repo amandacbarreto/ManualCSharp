@@ -13,6 +13,32 @@ int i2 = (i==42 ? 10 : 20);
 
 `+`, `+=`, `-=`, `*=`, `/=` e `%=`
 
+> **Note**
+>
+> O operador `+=` pode ser usado para concatenar strings
+
+```c#
+string s = "ABC";
+s += "DEF";
+Console.WriteLine(s); // Saída: ABCDEF
+```
+
+> **Note**
+>
+> `a++` e `++a` tem uma pequena diferença, assim como `a--` e `--a`
+
+```cs
+int a = 10;
+int b = a++; //a atribuição é feita primeiro (b=10) e só depois a é incrementado (a=11)
+Console.WriteLine(a); //11
+Console.WriteLine(b); //10
+a = 10;
+b = ++a;
+Console.WriteLine(a); //11
+Console.WriteLine(b); //11
+```
+
+
 ## Operadores aritméticos
 
 > **Note**
@@ -21,7 +47,7 @@ int i2 = (i==42 ? 10 : 20);
 
 ```c#
 Console.WriteLine(3 + 4 * 2); // 11
-Console.WriteLine((3 + 4) * 2; // 14
+Console.WriteLine((3 + 4) * 2); // 14
 ```
 
 - **`Math.Pow(double x, double y)`**
