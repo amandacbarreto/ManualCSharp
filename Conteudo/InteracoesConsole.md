@@ -65,7 +65,24 @@ String nome = "Maria";
 Console.WriteLine($"{nome} tem {idade} anos e tem saldo igual a {saldo:F2} reais");
 ```
 
+## Entrada de dados
 
+```c#
+Console.ReadLine();
+```
+
+* Lê da entrada padrão até a quebra de linha.
+* Retorna os dados lidos na forma de string.
+
+```c#
+//Para ler três palavras na mesma linha, separadas por espaço, armazenando cada uma em uma variável
+
+string s = Console.ReadLine(); // batata tomate abacaxi
+string[] vet = s.Split(' '); // {"batata", "tomate", "abacaxi"}
+string p1 = vet[0];  // "batata"
+string p2 = vet[1];  // "tomate"
+string p3 = vet[2];  // "abacaxi"
+```
 
 ## Conversão do valor lido através do Console.ReadLine()
 
