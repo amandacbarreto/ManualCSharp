@@ -96,19 +96,6 @@ Coisas que podem ser instrução e expressão ao mesmo tempo:
 - Chamada de métodos
 - Incremento e decremento
 
-## Operadores e operandos
-
-Os operadores **(=, ++, --, +=, -=, ?:)** realizam a operação com os operandos (variáveis e valores).
-
-Operador ternário:
-
-```c#
-int i = 43;
-int i2 = (i==42 ? 10 : 20);
-```
-
-###### [Para saber mais sobre operadores de comparação](https://docs.microsoft.com/pt-br/dotnet/csharp/language-reference/operators/comparison-operators)
-
 ### Operadores lógicos
 
 Os operadores lógicos são **(&&, ||, !)** .
