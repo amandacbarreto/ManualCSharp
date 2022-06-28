@@ -1,5 +1,72 @@
 # C# - Interações Classe Console
 
+## Quebra de linha
+
+```c#
+Console.Write("Com esse método 'Write' não teremos a quebra de linha. ");
+Console.WriteLine("Ou seja, o proximo 'Write' ou 'ReadLine' será feito imediatamente após (junto) à frase anterior. ");
+
+Console.WriteLine("\n"); //inclui uma quebra de linha adicional no Windows
+Console.WriteLine(Enviroment.NewLine()); //inclui uma quebra de linha independente do ambiente (SO)
+```
+
+## Saída de dados
+
+### Formatação de números decimais (ToString)
+
+```c#
+double pi = 3.14159265359;
+Console.WriteLine(pi.ToString("N2")); // 3.14
+Console.WriteLine(pi.ToString("F3")); // 3,141
+```
+
+```c#
+using System;
+using System.Globalization;
+
+namespace ConsoleApplication2 {
+    class Program {
+        static void Main(string[] args) {
+            double x = 10.35784;
+            Console.WriteLine(x.ToString("F2", CultureInfo.InvariantCulture)); 
+            // InvariantCulture faz com que seja ignorado qualquer formatação específica de país, 
+            // entao o número apresentado será com '.'
+        }
+    }
+}
+```
+
+### Concatenação
+
+```c#
+int idade = 32;
+double saldo = 10.35784;
+String nome = "Maria";
+
+Console.WriteLine(nome + " tem " + idade + " anos e tem saldo igual a "+ saldo.ToString("F2", CultureInfo.InvariantCulture) + " reais");
+```
+
+### Placeholders
+
+```c#
+int idade = 32;
+double saldo = 10.35784;
+String nome = "Maria";
+Console.WriteLine("{0} tem {1} anos e tem saldo igual a {2:F2} reais", nome, idade, saldo);
+```
+
+### Interpolação
+
+```c#
+int idade = 32;
+double saldo = 10.35784;
+String nome = "Maria";
+
+Console.WriteLine($"{nome} tem {idade} anos e tem saldo igual a {saldo:F2} reais");
+```
+
+
+
 ## Conversão do valor lido através do Console.ReadLine()
 
 ### TryParse
@@ -66,12 +133,3 @@ Saída: 50,8
 
 > **Note** o método `Replace` utilizado na string entrada apenas retorna uma nova string. Ele não modifica a string original, por isso é necessário que a variável entrada recebe o novo valor.
 
-## Formatação de números decimais
-
-### ToString("N2")
-
-```c#
-double pi = 3.14159265359;
-Console.WriteLine(pi.ToString("N2")); // 3.14
-Console.WriteLine(pi.ToString("F3")); // 3,141
-```
