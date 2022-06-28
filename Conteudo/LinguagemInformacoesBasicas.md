@@ -141,16 +141,6 @@ if (idade>=18){
 }
 ```
 
-## Laços (loops)
-
-### Laço for
-
-```c#
-for (int i = 0; i<=10; i++){
-    Console.WriteLine(i);
-}
-```
-
 ## Arrays (vetores)
 
 Permite criar um conjunto de objetos do mesmo tipo.
